@@ -173,18 +173,12 @@ static void get_temperature(int *SocketClient)
 	float temper;
 	
 	static int cnt;
-	char buf1[10] = {12,76,23,11,76,6,0,45,31};
-	char buf2[10] = {53,13,36,76,0,4,31,3,70};
-	
 	
 	int n = 3;
 	while (n!=0)
 	{
-		DHT11_Data_TypeDef DHT11_Data = {41, buf1[cnt], 19, buf2[cnt]};
-		//DHT11_Data_TypeDef DHT11_Data = {41, 12, 19, 53};
-		cnt++;
-		if (cnt == 9)
-			cnt = 0;
+		DHT11_Data_TypeDef DHT11_Data = {41, 11, 19, 11};
+
 			
 		read(temp_fd, &DHT11_Data, sizeof(DHT11_Data_TypeDef));
 		humidi = (float)(DHT11_Data.humi_high8bit*100+DHT11_Data.humi_low8bit)/100; 
